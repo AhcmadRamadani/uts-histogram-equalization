@@ -1,0 +1,45 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Membaca gambar
+img = cv2.imread('0b612b3a5f36e4c2bffb0ee1f842263c.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Melakukan histogram equalization
+equalized_img = cv2.equalizeHist(img)
+
+# Menampilkan gambar asli dan hasil equalization
+plt.figure(figsize=(10, 5))
+
+# Gambar asli
+plt.subplot(1, 2, 1)
+plt.title("Original Image")
+plt.imshow(img, cmap='gray')
+plt.axis('off')
+
+# Gambar setelah histogram equalization
+plt.subplot(1, 2, 2)
+plt.title("Histogram Equalized Image")
+plt.imshow(equalized_img, cmap='gray')
+plt.axis('off')
+
+plt.show()
+
+# Menampilkan histogram sebelum dan sesudah equalization
+plt.figure(figsize=(10, 5))
+
+# Histogram asli
+plt.subplot(1, 2, 1)
+plt.title("Histogram of Original Image")
+plt.hist(img.ravel(), bins=256, range=(0, 256), color='black')
+plt.xlabel("Pixel Intensity")
+plt.ylabel("Frequency")
+
+# Histogram setelah equalization
+plt.subplot(1, 2, 2)
+plt.title("Histogram of Equalized Image")
+plt.hist(equalized_img.ravel(), bins=256, range=(0, 256), color='black')
+plt.xlabel("Pixel Intensity")
+plt.ylabel("Frequency")
+
+plt.show()
